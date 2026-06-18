@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astrala – Destiny Awaits</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <span class="logo-star">✦</span>
+      <span class="logo-text">Astrala</span>
+    </a>
+
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item has-dropdown">
+          <a href="#zodiac">Zodiac Signs</a>
+          <ul class="dropdown">
+            <li><a href="#zodiac">Western Zodiac</a></li>
+            <li><a href="#chinese">Chinese Zodiac</a></li>
+            <li><a href="#compatibility">Compatibility</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#chinese">Chinese Zodiac</a>
+          <ul class="dropdown">
+            <li><a href="#chinese">Animals</a></li>
+            <li><a href="#chinese">Elements</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="#tarot">Tarot</a></li>
+        <li class="nav-item has-dropdown">
+          <a href="#astrology">Astrology</a>
+          <ul class="dropdown">
+            <li><a href="#astrology">Birth Chart</a></li>
+            <li><a href="#astrology">Houses</a></li>
+            <li><a href="#astrology">Planets</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#numerology">Numerology</a>
+          <ul class="dropdown">
+            <li><a href="#numerology">Life Path</a></li>
+            <li><a href="#numerology">Angel Numbers</a></li>
+            <li><a href="#numerology">Destiny Number</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="#blog">Blog</a></li>
+        <li class="nav-item"><a href="#shop">Shop</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="cart-btn" aria-label="Shopping cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+      </button>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="stars-layer stars-small"></div>
+    <div class="stars-layer stars-medium"></div>
+    <div class="stars-layer stars-large"></div>
+    <div class="nebula"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Your celestial journey begins</p>
+    <h1 class="hero-title">Destiny awaits<span class="dot">...</span></h1>
+    <p class="hero-subtitle">Find your zodiac sign</p>
+
+    <div class="zodiac-finder-card">
+      <p class="finder-label">Enter your date of birth</p>
+      <div class="finder-inputs">
+        <select id="birth-month" class="finder-select">
+          <option value="">Month</option>
+          <option value="1">January</option><option value="2">February</option>
+          <option value="3">March</option><option value="4">April</option>
+          <option value="5">May</option><option value="6">June</option>
+          <option value="7">July</option><option value="8">August</option>
+          <option value="9">September</option><option value="10">October</option>
+          <option value="11">November</option><option value="12">December</option>
+        </select>
+        <select id="birth-day" class="finder-select">
+          <option value="">Day</option>
+          <!-- Populated by JS -->
+        </select>
+        <select id="birth-year" class="finder-select">
+          <option value="">Year</option>
+          <!-- Populated by JS -->
+        </select>
+        <button class="btn-reveal" onclick="revealZodiac()">Reveal my sign</button>
+      </div>
+      <div id="zodiac-result" class="zodiac-result hidden"></div>
+    </div>
+
+    <div class="hero-signs">
+      <div class="hero-sign-card">
+        <span class="sign-glyph">♓</span>
+        <span class="sign-name">Pisces</span>
+        <span class="sign-dates">Feb 19 – Mar 20</span>
+      </div>
+      <div class="hero-sign-card active">
+        <span class="sign-glyph">♈</span>
+        <span class="sign-name">Aries</span>
+        <span class="sign-dates">Mar 21 – Apr 19</span>
+      </div>
+      <div class="hero-sign-card">
+        <span class="sign-glyph">♉</span>
+        <span class="sign-name">Taurus</span>
+        <span class="sign-dates">Apr 20 – May 20</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll to explore</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ZODIAC SIGNS
+═══════════════════════════════════════════════════════════ -->
+<section class="section zodiac-section" id="zodiac">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Western Astrology</p>
+      <h2 class="section-title">The 12 Zodiac Signs</h2>
+      <p class="section-desc">Discover the cosmic blueprint of your personality, strengths, and life's purpose through your sun sign.</p>
+    </div>
+
+    <div class="zodiac-grid">
+      <div class="zodiac-card" data-element="fire">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♈</span>
+          <h3 class="zodiac-card-name">Aries</h3>
+          <p class="zodiac-dates">Mar 21 – Apr 19</p>
+          <p class="zodiac-desc">Bold, passionate, and determined — natural leaders always ready for a new challenge.</p>
+          <div class="zodiac-meta">
+            <span class="element fire">🔥 Fire</span>
+            <span class="planet">♂ Mars</span>
+          </div>
+          <a href="#" class="card-link">Explore Aries →</a>
+        </div>
+      </div>
+      <div class="zodiac-card" data-element="earth">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♉</span>
+          <h3 class="zodiac-card-name">Taurus</h3>
+          <p class="zodiac-dates">Apr 20 – May 20</p>
+          <p class="zodiac-desc">Patient, reliable, and devoted — grounded souls with a deep appreciation for beauty.</p>
+          <div class="zodiac-meta">
+            <span class="element earth">🌿 Earth</span>
+            <span class="planet">♀ Venus</span>
+          </div>
+          <a href="#" class="card-link">Explore Taurus →</a>
+        </div>
+      </div>
+      <div class="zodiac-card" data-element="air">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♊</span>
+          <h3 class="zodiac-card-name">Gemini</h3>
+          <p class="zodiac-dates">May 21 – Jun 20</p>
+          <p class="zodiac-desc">Curious, adaptable, and expressive — the social butterflies of the zodiac.</p>
+          <div class="zodiac-meta">
+            <span class="element air">💨 Air</span>
+            <span class="planet">☿ Mercury</span>
+          </div>
+          <a href="#" class="card-link">Explore Gemini →</a>
+        </div>
+      </div>
+      <div class="zodiac-card" data-element="water">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♋</span>
+          <h3 class="zodiac-card-name">Cancer</h3>
+          <p class="zodiac-dates">Jun 21 – Jul 22</p>
+          <p class="zodiac-desc">Intuitive, nurturing, and protective — deeply connected to home and family.</p>
+          <div class="zodiac-meta">
+            <span class="element water">💧 Water</span>
+            <span class="planet">☽ Moon</span>
+          </div>
+          <a href="#" class="card-link">Explore Cancer →</a>
+        </div>
+      </div>
+      <div class="zodiac-card" data-element="fire">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♌</span>
+          <h3 class="zodiac-card-name">Leo</h3>
+          <p class="zodiac-dates">Jul 23 – Aug 22</p>
+          <p class="zodiac-desc">Charismatic, generous, and creative — natural performers who light up every room.</p>
+          <div class="zodiac-meta">
+            <span class="element fire">🔥 Fire</span>
+            <span class="planet">☉ Sun</span>
+          </div>
+          <a href="#" class="card-link">Explore Leo →</a>
+        </div>
+      </div>
+      <div class="zodiac-card" data-element="earth">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♍</span>
+          <h3 class="zodiac-card-name">Virgo</h3>
+          <p class="zodiac-dates">Aug 23 – Sep 22</p>
+          <p class="zodiac-desc">Analytical, practical, and diligent — perfectionists with a caring heart.</p>
+          <div class="zodiac-meta">
+            <span class="element earth">🌿 Earth</span>
+            <span class="planet">☿ Mercury</span>
+          </div>
+          <a href="#" class="card-link">Explore Virgo →</a>
+        </div>
+      </div>
+      <div class="zodiac-card" data-element="air">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♎</span>
+          <h3 class="zodiac-card-name">Libra</h3>
+          <p class="zodiac-dates">Sep 23 – Oct 22</p>
+          <p class="zodiac-desc">Diplomatic, fair-minded, and social — seekers of harmony and justice.</p>
+          <div class="zodiac-meta">
+            <span class="element air">💨 Air</span>
+            <span class="planet">♀ Venus</span>
+          </div>
+          <a href="#" class="card-link">Explore Libra →</a>
+        </div>
+      </div>
+      <div class="zodiac-card" data-element="water">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♏</span>
+          <h3 class="zodiac-card-name">Scorpio</h3>
+          <p class="zodiac-dates">Oct 23 – Nov 21</p>
+          <p class="zodiac-desc">Passionate, determined, and resourceful — masters of transformation and depth.</p>
+          <div class="zodiac-meta">
+            <span class="element water">💧 Water</span>
+            <span class="planet">♇ Pluto</span>
+          </div>
+          <a href="#" class="card-link">Explore Scorpio →</a>
+        </div>
+      </div>
+      <div class="zodiac-card" data-element="fire">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♐</span>
+          <h3 class="zodiac-card-name">Sagittarius</h3>
+          <p class="zodiac-dates">Nov 22 – Dec 21</p>
+          <p class="zodiac-desc">Adventurous, optimistic, and philosophical — eternal seekers of truth and freedom.</p>
+          <div class="zodiac-meta">
+            <span class="element fire">🔥 Fire</span>
+            <span class="planet">♃ Jupiter</span>
+          </div>
+          <a href="#" class="card-link">Explore Sagittarius →</a>
+        </div>
+      </div>
+      <div class="zodiac-card" data-element="earth">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♑</span>
+          <h3 class="zodiac-card-name">Capricorn</h3>
+          <p class="zodiac-dates">Dec 22 – Jan 19</p>
+          <p class="zodiac-desc">Disciplined, ambitious, and patient — the strategic architects of the zodiac.</p>
+          <div class="zodiac-meta">
+            <span class="element earth">🌿 Earth</span>
+            <span class="planet">♄ Saturn</span>
+          </div>
+          <a href="#" class="card-link">Explore Capricorn →</a>
+        </div>
+      </div>
+      <div class="zodiac-card" data-element="air">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♒</span>
+          <h3 class="zodiac-card-name">Aquarius</h3>
+          <p class="zodiac-dates">Jan 20 – Feb 18</p>
+          <p class="zodiac-desc">Original, independent, and humanitarian — visionary rebels ahead of their time.</p>
+          <div class="zodiac-meta">
+            <span class="element air">💨 Air</span>
+            <span class="planet">♅ Uranus</span>
+          </div>
+          <a href="#" class="card-link">Explore Aquarius →</a>
+        </div>
+      </div>
+      <div class="zodiac-card" data-element="water">
+        <div class="zodiac-card-inner">
+          <span class="zodiac-symbol">♓</span>
+          <h3 class="zodiac-card-name">Pisces</h3>
+          <p class="zodiac-dates">Feb 19 – Mar 20</p>
+          <p class="zodiac-desc">Empathetic, artistic, and intuitive — dreamers deeply connected to the unseen world.</p>
+          <div class="zodiac-meta">
+            <span class="element water">💧 Water</span>
+            <span class="planet">♆ Neptune</span>
+          </div>
+          <a href="#" class="card-link">Explore Pisces →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CHINESE ZODIAC
+═══════════════════════════════════════════════════════════ -->
+<section class="section chinese-section" id="chinese">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Eastern Astrology</p>
+      <h2 class="section-title">Chinese Zodiac</h2>
+      <p class="section-desc">The ancient 12-year cycle of the Chinese lunar calendar reveals your innate character and destiny.</p>
+    </div>
+
+    <div class="chinese-grid">
+      <div class="chinese-card">
+        <span class="chinese-animal">🐀</span>
+        <h3>Rat</h3>
+        <p class="chinese-years">1924, 1936, 1948, 1960, 1972, 1984, 1996, 2008, 2020</p>
+        <p class="chinese-trait">Clever & resourceful</p>
+      </div>
+      <div class="chinese-card">
+        <span class="chinese-animal">🐂</span>
+        <h3>Ox</h3>
+        <p class="chinese-years">1925, 1937, 1949, 1961, 1973, 1985, 1997, 2009, 2021</p>
+        <p class="chinese-trait">Diligent & dependable</p>
+      </div>
+      <div class="chinese-card">
+        <span class="chinese-animal">🐅</span>
+        <h3>Tiger</h3>
+        <p class="chinese-years">1926, 1938, 1950, 1962, 1974, 1986, 1998, 2010, 2022</p>
+        <p class="chinese-trait">Courageous & intense</p>
+      </div>
+      <div class="chinese-card">
+        <span class="chinese-animal">🐇</span>
+        <h3>Rabbit</h3>
+        <p class="chinese-years">1927, 1939, 1951, 1963, 1975, 1987, 1999, 2011, 2023</p>
+        <p class="chinese-trait">Gentle & compassionate</p>
+      </div>
+      <div class="chinese-card">
+        <span class="chinese-animal">🐉</span>
+        <h3>Dragon</h3>
+        <p class="chinese-years">1928, 1940, 1952, 1964, 1976, 1988, 2000, 2012, 2024</p>
+        <p class="chinese-trait">Powerful & ambitious</p>
+      </div>
+      <div class="chinese-card">
+        <span class="chinese-animal">🐍</span>
+        <h3>Snake</h3>
+        <p class="chinese-years">1929, 1941, 1953, 1965, 1977, 1989, 2001, 2013, 2025</p>
+        <p class="chinese-trait">Wise & intuitive</p>
+      </div>
+      <div class="chinese-card">
+        <span class="chinese-animal">🐎</span>
+        <h3>Horse</h3>
+        <p class="chinese-years">1930, 1942, 1954, 1966, 1978, 1990, 2002, 2014, 2026</p>
+        <p class="chinese-trait">Free-spirited & energetic</p>
+      </div>
+      <div class="chinese-card">
+        <span class="chinese-animal">🐏</span>
+        <h3>Goat</h3>
+        <p class="chinese-years">1931, 1943, 1955, 1967, 1979, 1991, 2003, 2015, 2027</p>
+        <p class="chinese-trait">Creative & gentle</p>
+      </div>
+      <div class="chinese-card">
+        <span class="chinese-animal">🐒</span>
+        <h3>Monkey</h3>
+        <p class="chinese-years">1932, 1944, 1956, 1968, 1980, 1992, 2004, 2016, 2028</p>
+        <p class="chinese-trait">Witty & versatile</p>
+      </div>
+      <div class="chinese-card">
+        <span class="chinese-animal">🐓</span>
+        <h3>Rooster</h3>
+        <p class="chinese-years">1933, 1945, 1957, 1969, 1981, 1993, 2005, 2017, 2029</p>
+        <p class="chinese-trait">Confident & observant</p>
+      </div>
+      <div class="chinese-card">
+        <span class="chinese-animal">🐕</span>
+        <h3>Dog</h3>
+        <p class="chinese-years">1934, 1946, 1958, 1970, 1982, 1994, 2006, 2018, 2030</p>
+        <p class="chinese-trait">Loyal & honest</p>
+      </div>
+      <div class="chinese-card">
+        <span class="chinese-animal">🐖</span>
+        <h3>Pig</h3>
+        <p class="chinese-years">1935, 1947, 1959, 1971, 1983, 1995, 2007, 2019, 2031</p>
+        <p class="chinese-trait">Generous & sincere</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NUMEROLOGY / LIFE PATH
+═══════════════════════════════════════════════════════════ -->
+<section class="section numerology-section" id="numerology">
+  <div class="container">
+    <div class="numerology-layout">
+      <div class="numerology-info">
+        <p class="section-eyebrow">Sacred Numbers</p>
+        <h2 class="section-title">Discover Your Life Path Number</h2>
+        <p class="section-desc">Numerology reveals the hidden meaning behind numbers in your life. Your Life Path Number — derived from your birth date — is the most significant number in your chart.</p>
+
+        <div class="life-path-previews">
+          <div class="lp-item"><span class="lp-num">1</span><span class="lp-word">Initiation</span></div>
+          <div class="lp-item"><span class="lp-num">2</span><span class="lp-word">Partnership</span></div>
+          <div class="lp-item"><span class="lp-num">3</span><span class="lp-word">Creativity</span></div>
+          <div class="lp-item"><span class="lp-num">4</span><span class="lp-word">Stability</span></div>
+          <div class="lp-item"><span class="lp-num">5</span><span class="lp-word">Freedom</span></div>
+          <div class="lp-item"><span class="lp-num">6</span><span class="lp-word">Harmony</span></div>
+          <div class="lp-item"><span class="lp-num">7</span><span class="lp-word">Wisdom</span></div>
+          <div class="lp-item"><span class="lp-num">8</span><span class="lp-word">Abundance</span></div>
+          <div class="lp-item"><span class="lp-num">9</span><span class="lp-word">Completion</span></div>
+        </div>
+      </div>
+
+      <div class="numerology-calc">
+        <div class="calc-card">
+          <h3 class="calc-title">Life Path Calculator</h3>
+          <p class="calc-subtitle">Enter your birth date to reveal your number</p>
+          <div class="calc-inputs">
+            <select id="num-month" class="finder-select">
+              <option value="">Month</option>
+              <option value="1">January</option><option value="2">February</option>
+              <option value="3">March</option><option value="4">April</option>
+              <option value="5">May</option><option value="6">June</option>
+              <option value="7">July</option><option value="8">August</option>
+              <option value="9">September</option><option value="10">October</option>
+              <option value="11">November</option><option value="12">December</option>
+            </select>
+            <select id="num-day" class="finder-select">
+              <option value="">Day</option>
+            </select>
+            <select id="num-year" class="finder-select">
+              <option value="">Year</option>
+            </select>
+          </div>
+          <div class="calc-actions">
+            <button class="btn-reveal" onclick="revealLifePath()">Reveal my path</button>
+            <button class="btn-reset" onclick="resetLifePath()">Reset</button>
+          </div>
+          <div id="life-path-result" class="life-path-result hidden"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ANGEL NUMBERS
+═══════════════════════════════════════════════════════════ -->
+<section class="section angel-section" id="angel">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Divine Messages</p>
+      <h2 class="section-title">Angel Numbers</h2>
+      <p class="section-desc">When the universe sends you repeating numbers, it's no coincidence — it's a divine message guiding your path.</p>
+    </div>
+
+    <div class="angel-grid">
+      <div class="angel-card"><span class="angel-num">000</span><span class="angel-meaning">New Beginnings</span></div>
+      <div class="angel-card"><span class="angel-num">111</span><span class="angel-meaning">Manifestation</span></div>
+      <div class="angel-card"><span class="angel-num">222</span><span class="angel-meaning">Partnerships</span></div>
+      <div class="angel-card"><span class="angel-num">333</span><span class="angel-meaning">Creativity &amp; Joy</span></div>
+      <div class="angel-card"><span class="angel-num">444</span><span class="angel-meaning">Stability</span></div>
+      <div class="angel-card"><span class="angel-num">555</span><span class="angel-meaning">Change &amp; Freedom</span></div>
+      <div class="angel-card"><span class="angel-num">666</span><span class="angel-meaning">Balance &amp; Care</span></div>
+      <div class="angel-card"><span class="angel-num">777</span><span class="angel-meaning">Spiritual Luck</span></div>
+      <div class="angel-card"><span class="angel-num">888</span><span class="angel-meaning">Abundance</span></div>
+      <div class="angel-card"><span class="angel-num">999</span><span class="angel-meaning">Completion</span></div>
+      <div class="angel-card"><span class="angel-num">1111</span><span class="angel-meaning">Awakening</span></div>
+      <div class="angel-card"><span class="angel-num">1212</span><span class="angel-meaning">Divine Alignment</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TAROT
+═══════════════════════════════════════════════════════════ -->
+<section class="section tarot-section" id="tarot">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Ancient Wisdom</p>
+      <h2 class="section-title">Tarot Card Meanings</h2>
+      <p class="section-desc">The 78 cards of the Tarot are a mirror of the universe — explore the Major and Minor Arcana to unlock their timeless wisdom.</p>
+    </div>
+
+    <div class="tarot-tabs">
+      <button class="tarot-tab active" data-tab="major">Major Arcana</button>
+      <button class="tarot-tab" data-tab="wands">Wands</button>
+      <button class="tarot-tab" data-tab="cups">Cups</button>
+      <button class="tarot-tab" data-tab="swords">Swords</button>
+      <button class="tarot-tab" data-tab="pentacles">Pentacles</button>
+    </div>
+
+    <div class="tarot-grid" id="tarot-grid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     COMPATIBILITY BANNER
+═══════════════════════════════════════════════════════════ -->
+<section class="compatibility-banner" id="compatibility">
+  <div class="container">
+    <div class="compat-inner">
+      <div class="compat-text">
+        <p class="section-eyebrow">Love &amp; Relationships</p>
+        <h2>Are you cosmically compatible?</h2>
+        <p>Discover how the stars align between you and your partner. Explore deep insights into your emotional, intellectual, and romantic compatibility.</p>
+        <a href="#" class="btn-outline">Explore Compatibility →</a>
+      </div>
+      <div class="compat-visual">
+        <div class="compat-signs">
+          <div class="compat-sign">♈</div>
+          <div class="compat-heart">♥</div>
+          <div class="compat-sign">♎</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     BLOG
+═══════════════════════════════════════════════════════════ -->
+<section class="section blog-section" id="blog">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Celestial Insights</p>
+      <h2 class="section-title">Latest from the Blog</h2>
+    </div>
+
+    <div class="blog-grid">
+      <article class="blog-card featured">
+        <div class="blog-img blog-img-1"></div>
+        <div class="blog-content">
+          <span class="blog-tag">Astrology</span>
+          <h3><a href="#">Understanding the 12 Astrological Houses and What They Mean for You</a></h3>
+          <p>The astrological houses represent different areas of life. Learn how each house influences your personality, relationships, and destiny.</p>
+          <div class="blog-meta">
+            <span class="blog-author">By Luna Starweaver</span>
+            <span class="blog-date">June 12, 2026</span>
+          </div>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-img blog-img-2"></div>
+        <div class="blog-content">
+          <span class="blog-tag">Compatibility</span>
+          <h3><a href="#">The Most Compatible Zodiac Pairings for Love in 2026</a></h3>
+          <p>Discover which zodiac signs are written in the stars for each other this year.</p>
+          <div class="blog-meta">
+            <span class="blog-author">By Celestia Moon</span>
+            <span class="blog-date">June 8, 2026</span>
+          </div>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-img blog-img-3"></div>
+        <div class="blog-content">
+          <span class="blog-tag">Numerology</span>
+          <h3><a href="#">What Your Life Path Number Reveals About Your Soul's Purpose</a></h3>
+          <p>Go beyond your sun sign — numerology unlocks the deeper blueprint of your soul's journey in this lifetime.</p>
+          <div class="blog-meta">
+            <span class="blog-author">By Orion Sage</span>
+            <span class="blog-date">May 29, 2026</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="section-cta">
+      <a href="#" class="btn-outline">View All Articles →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NEWSLETTER
+═══════════════════════════════════════════════════════════ -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-inner">
+      <div class="newsletter-stars">✦ ✧ ✦</div>
+      <h2>Receive cosmic guidance in your inbox</h2>
+      <p>Weekly horoscopes, celestial events, and astrological insights — delivered with each lunar cycle.</p>
+      <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+        <input type="email" placeholder="Enter your email address" class="newsletter-input" required />
+        <button type="submit" class="btn-reveal">Subscribe</button>
+      </form>
+      <p class="newsletter-note">No spam, ever. Unsubscribe at any time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-star">✦</span>
+          <span class="logo-text">Astrala</span>
+        </a>
+        <p>Your trusted guide to the stars. Discover the cosmic wisdom that shapes your life, love, and destiny.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="Pinterest">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.23-5.22 1.23-5.22s-.31-.63-.31-1.56c0-1.46.85-2.55 1.9-2.55.9 0 1.33.67 1.33 1.48 0 .9-.57 2.25-.87 3.5-.25 1.04.52 1.89 1.54 1.89 1.85 0 3.1-2.37 3.1-5.16 0-2.14-1.44-3.64-3.5-3.64-2.38 0-3.78 1.78-3.78 3.63 0 .72.28 1.49.62 1.91.07.08.08.15.06.23l-.23.94c-.04.15-.13.18-.29.11-1.06-.5-1.73-2.05-1.73-3.31 0-2.69 1.95-5.16 5.63-5.16 2.95 0 5.24 2.1 5.24 4.91 0 2.93-1.84 5.28-4.4 5.28-.86 0-1.67-.45-1.95-.97l-.53 1.98c-.19.74-.71 1.67-1.06 2.23.8.25 1.65.38 2.53.38 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter/X">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Astrology</h4>
+          <ul>
+            <li><a href="#">Birth Chart</a></li>
+            <li><a href="#">Rising Signs</a></li>
+            <li><a href="#">Moon Signs</a></li>
+            <li><a href="#">Astrological Houses</a></li>
+            <li><a href="#">Planetary Transits</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Zodiac Signs</h4>
+          <ul>
+            <li><a href="#">Aries</a></li>
+            <li><a href="#">Taurus</a></li>
+            <li><a href="#">Gemini</a></li>
+            <li><a href="#">Cancer</a></li>
+            <li><a href="#">Leo</a></li>
+            <li><a href="#">Virgo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Numerology</h4>
+          <ul>
+            <li><a href="#">Life Path Numbers</a></li>
+            <li><a href="#">Angel Numbers</a></li>
+            <li><a href="#">Destiny Number</a></li>
+            <li><a href="#">Soul Urge Number</a></li>
+            <li><a href="#">Expression Number</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#">Tarot Cards</a></li>
+            <li><a href="#">Chinese Zodiac</a></li>
+            <li><a href="#">Compatibility</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Shop</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Astrala. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Shipping &amp; Returns</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
