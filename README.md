@@ -163,6 +163,60 @@ misconfigured key never costs a sale.
 
 ---
 
+## 4a. Deploying
+
+The site is static with no build step, so any host works. It is set up for Vercel.
+
+### Import it (one time, ~2 minutes)
+
+1. <https://vercel.com/new> → **Import Git Repository** → `Harsh-voice/astrology-demo`.
+   If it is not listed, use **Adjust GitHub App Permissions** and grant access.
+2. **Framework Preset: Other.** Leave Build Command, Output Directory and
+   Install Command **empty** — `vercel.json` already sets caching and security
+   headers, and there is nothing to build.
+3. Deploy.
+
+Every push to the production branch redeploys automatically after that.
+
+> Make sure the repository's default branch is **`main`** (GitHub → Settings →
+> Branches). The old default, `claude/zealous-rubin-0bhz4z`, holds an unrelated
+> early prototype — Vercel would deploy that instead.
+
+### Demo mode vs live mode
+
+**This build ships in demo mode and is deliberately invisible to Google.**
+Every page carries `noindex,nofollow`, the canonical tags are removed and
+`robots.txt` is `Disallow: /`.
+
+That is on purpose. The canonicals point at `https://astroashwini.com/`, which
+still serves her old WordPress site — publishing them from a `vercel.app` URL
+would tell Google the real version of each page is somewhere else, with
+different content. A demo should never compete with the live site.
+
+When she is ready to go live on her own domain:
+
+```bash
+node tools/site-mode.mjs live https://astroashwini.com
+git commit -am "Go live" && git push
+```
+
+That restores the canonicals, regenerates `sitemap.xml` from the real catalogue,
+restores `robots.txt`, and makes `og:image` and the `LocalBusiness` schema `@id`
+absolute. To go back:
+
+```bash
+node tools/site-mode.mjs demo
+```
+
+Both modes take an optional domain (`node tools/site-mode.mjs demo https://…`)
+which stamps `og:image` as an absolute URL — worth doing once you know the
+deploy URL, because WhatsApp will not resolve a relative one when the link is
+shared.
+
+The script has no dependencies and is idempotent.
+
+---
+
 ## 5. Structure
 
 ```
@@ -185,6 +239,8 @@ assets/js/{home,shop,product,services,about,contact,checkout}.js
 assets/img/             Brand photos and artwork (from astroashwini.com)
 assets/products/        Product photos — drop them here (currently empty)
 assets/icons/           App icons
+tools/site-mode.mjs     Switch between demo (noindex) and live — see "Deploying"
+vercel.json             Static-host config: caching + security headers
 manifest.webmanifest    PWA — installable to a phone home screen
 sw.js                   Service worker — offline support
 sitemap.xml, robots.txt SEO
