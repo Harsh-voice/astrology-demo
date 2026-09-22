@@ -201,6 +201,6 @@ sitemap.xml, robots.txt SEO
 Copy, services, courses, reviews, address and phone were taken from the live
 astroashwini.com. Brand assets (the zodiac mandala logo, the Leo lion artwork,
 her photographs and the service icons) were downloaded from that site and
-optimised — the 2.8 MB logo is now 69 KB, the 4.9 MB lion 56 KB.
+optimised — the 2.8 MB logo mark is now 116 KB, the 4.9 MB lion 60 KB.
 
 The 12 reviews are her real Google reviews, shown verbatim.
