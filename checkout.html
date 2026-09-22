@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0a1424">
+<meta name="theme-color" content="#F7F3EC">
 <title>Checkout | Astro Ashwini</title>
 <meta name="description" content="Secure checkout for zodiac bracelets and certified Rudraksha from Astro Ashwini, Pune.">
 <link rel="canonical" href="https://astroashwini.com/checkout.html">
@@ -16,10 +16,10 @@
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/Inter-latin-400.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/CormorantGaramond-latin-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/GeneralSans-variable.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/Fraunces-latin.woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/app.css">
 <meta name="robots" content="noindex">
@@ -30,7 +30,7 @@
   <section class="phead">
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="shop.html">Shop</a><span>›</span><span>Checkout</span></nav>
-      <p class="eyebrow is-center">Almost there</p>
+      <p class="eyebrow">Almost there</p>
       <h1>Checkout</h1>
       
     </div>
@@ -40,7 +40,7 @@
     <div class="wrap">
       <div class="grid grid-2" id="checkout" style="align-items:start">
 
-        <div class="card" style="padding:var(--sp-5)">
+        <div>
           <h2 style="font-size:var(--fs-lg);margin-bottom:var(--sp-5)">Delivery details</h2>
           <div class="field">
             <label for="f-name">Full name *</label>
@@ -69,7 +69,7 @@
             </div>
           </div>
 
-          <hr class="hr-gold" style="margin-block:var(--sp-5)">
+          <hr class="rule" style="margin-block:var(--sp-5)">
           <p class="muted" style="font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;margin-bottom:var(--sp-4)">
             So Ashwini can check the piece suits your chart
           </p>
@@ -89,12 +89,12 @@
           </div>
         </div>
 
-        <div class="card" style="padding:var(--sp-5)">
+        <div>
           <h2 style="font-size:var(--fs-lg);margin-bottom:var(--sp-5)">Your order</h2>
           <div id="summary"></div>
-          <button class="btn btn--gold btn--block mt-8" id="pay">Continue</button>
+          <button class="btn btn--primary btn--block mt-8" id="pay">Continue</button>
           <p class="muted center mt-4" style="font-size:var(--fs-xs)" id="paynote"></p>
-          <p class="center mt-4"><a href="shop.html" style="font-size:var(--fs-xs);color:var(--gold-lt)">← Keep shopping</a></p>
+          <p class="center mt-4"><a href="shop.html" class="clay" style="font-size:var(--fs-xs)">← Keep shopping</a></p>
         </div>
 
       </div>
@@ -113,6 +113,7 @@
 </noscript>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/data.js"></script>
+<script src="assets/js/icons.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/checkout.js"></script>
 </body>

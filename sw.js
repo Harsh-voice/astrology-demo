@@ -1,12 +1,12 @@
 /* Astro Ashwini — service worker.
    Cache-first for static assets, network-first for HTML so content stays fresh. */
-const VERSION = 'astro-v1';
+const VERSION = 'astro-v2';
 const CORE = [
   'index.html', 'shop.html', 'product.html', 'services.html',
   'about.html', 'contact.html', 'checkout.html',
   'assets/css/app.css', 'assets/css/fonts.css',
-  'assets/fonts/Inter-latin-400.woff2', 'assets/fonts/CormorantGaramond-latin-400.woff2',
-  'assets/js/config.js', 'assets/js/data.js', 'assets/js/app.js', 'assets/js/cards.js',
+  'assets/fonts/GeneralSans-variable.woff2', 'assets/fonts/Fraunces-latin.woff2',
+  'assets/js/config.js', 'assets/js/data.js', 'assets/js/icons.js', 'assets/js/app.js', 'assets/js/cards.js',
   'assets/img/logo-mark.webp', 'assets/img/logo-lockup.webp',
   'manifest.webmanifest'
 ];

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0a1424">
+<meta name="theme-color" content="#F7F3EC">
 <title>Contact &amp; Book an Appointment | Astro Ashwini, Magarpatta Pune</title>
 <meta name="description" content="Book a consultation with Ashwini Patwardhan. Insppire House, Mulberry Garden 2, Magarpatta City, Hadapsar, Pune 411028. Call +91 99235 58822.">
 <link rel="canonical" href="https://astroashwini.com/contact.html">
@@ -16,10 +16,10 @@
 <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/Inter-latin-400.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/CormorantGaramond-latin-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/GeneralSans-variable.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/Fraunces-latin.woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/app.css">
 
@@ -30,9 +30,9 @@
   <section class="phead">
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><span>Contact</span></nav>
-      <p class="eyebrow is-center">Our office</p>
+      <p class="eyebrow">Our office</p>
       <h1>Book an appointment</h1>
-      <p class="lead mt-4" style="max-width:60ch;margin-inline:auto">A reading takes about an hour. Bring your date, time and place of birth — everything else Ashwini works out from there.</p>
+      <p class="lead mt-4">A reading takes about an hour. Bring your date, time and place of birth — everything else Ashwini works out from there.</p>
     </div>
   </section>
 
@@ -42,37 +42,31 @@
       <div class="reveal">
         <h2 style="font-size:var(--fs-xl);margin-bottom:var(--sp-5)">Reach us</h2>
 
-        <a class="card" href="https://maps.google.com/?q=Insppire+House+Mulberry+Garden+2+Magarpatta+City+Hadapsar+Pune+411028"
-           target="_blank" rel="noopener noreferrer"
-           style="display:flex;gap:var(--sp-4);padding:var(--sp-4);margin-bottom:var(--sp-3);align-items:flex-start">
-          <span class="svc__icon" style="width:44px;height:44px"><span>⌖</span></span>
+        <a class="contact-row" href="https://maps.google.com/?q=Insppire+House+Mulberry+Garden+2+Magarpatta+City+Hadapsar+Pune+411028"
+           target="_blank" rel="noopener noreferrer">
+          <svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>
           <span>
             <span class="spec__k">Address</span>
-            <span class="spec__v" style="font-weight:500;line-height:1.7">
-              Insppire House, Bunglow No 24,<br>Mulberry Garden 2, Magarpatta City,<br>Hadapsar, Pune — 411028
-            </span>
+            <span class="spec__v">Insppire House, Bunglow No 24,<br>Mulberry Garden 2, Magarpatta City,<br>Hadapsar, Pune — 411028</span>
           </span>
         </a>
 
-        <a class="card" href="tel:+919923558822"
-           style="display:flex;gap:var(--sp-4);padding:var(--sp-4);margin-bottom:var(--sp-3);align-items:center">
-          <span class="svc__icon" style="width:44px;height:44px"><span>☏</span></span>
+        <a class="contact-row" href="tel:+919923558822">
+          <svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>
           <span><span class="spec__k">Phone</span><span class="spec__v">+91 99235 58822</span></span>
         </a>
 
-        <a class="card" href="https://wa.me/919923558822" target="_blank" rel="noopener noreferrer"
-           style="display:flex;gap:var(--sp-4);padding:var(--sp-4);margin-bottom:var(--sp-3);align-items:center">
-          <span class="svc__icon" style="width:44px;height:44px"><span>✆</span></span>
+        <a class="contact-row" href="https://wa.me/919923558822" target="_blank" rel="noopener noreferrer">
+          <svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg>
           <span><span class="spec__k">WhatsApp</span><span class="spec__v">Message us directly</span></span>
         </a>
 
-        <a class="card" href="https://www.instagram.com/astroashwiini/" target="_blank" rel="noopener noreferrer"
-           style="display:flex;gap:var(--sp-4);padding:var(--sp-4);align-items:center">
-          <span class="svc__icon" style="width:44px;height:44px"><span>◎</span></span>
+        <a class="contact-row" href="https://www.instagram.com/astroashwiini/" target="_blank" rel="noopener noreferrer">
+          <svg class="ic" aria-hidden="true"><use href="#i-insta"/></svg>
           <span><span class="spec__k">Instagram</span><span class="spec__v">@astroashwiini</span></span>
         </a>
 
-        <div class="card mt-6" style="padding:0;overflow:hidden;border-radius:var(--radius-lg)">
+        <div class="mt-8" style="overflow:hidden;border-radius:2px;border:1px solid var(--hair)">
           <iframe
             title="Astro Ashwini — Magarpatta City, Pune"
             src="https://www.google.com/maps?q=Mulberry%20Garden%202%20Magarpatta%20City%20Hadapsar%20Pune%20411028&output=embed"
@@ -81,7 +75,7 @@
         </div>
       </div>
 
-      <div class="card reveal" style="padding:var(--sp-5)">
+      <div class="reveal">
         <h2 style="font-size:var(--fs-xl);margin-bottom:var(--sp-2)">Request a booking</h2>
         <p class="muted" style="font-size:var(--fs-sm);margin-bottom:var(--sp-6)">
           Fill this in and it opens in WhatsApp with your details ready to send.
@@ -118,9 +112,9 @@
             <label for="b-msg">Anything you want to ask</label>
             <textarea class="textarea" id="b-msg" name="msg" placeholder="Optional"></textarea>
           </div>
-          <button class="btn btn--wa btn--block" type="submit" id="b-send">Send on WhatsApp</button>
+          <button class="btn btn--ghost btn--block" type="submit" id="b-send">Send on WhatsApp</button>
           <p class="muted center mt-4" style="font-size:var(--fs-xs)">
-            Or call <a href="tel:+919923558822" style="color:var(--gold-lt)">+91 99235 58822</a> directly.
+            Or call <a href="tel:+919923558822" class="clay">+91 99235 58822</a> directly.
           </p>
         </form>
       </div>
@@ -139,6 +133,7 @@
 </noscript>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/data.js"></script>
+<script src="assets/js/icons.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/contact.js"></script>
 </body>

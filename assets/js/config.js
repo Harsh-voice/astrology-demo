@@ -55,6 +55,6 @@ window.ASTRO_CONFIG = {
     keyId: '',                              // e.g. 'rzp_test_1DP5mmOlF5G5ag'
     createOrderUrl: '/api/razorpay/order',   // your backend
     verifyUrl: '/api/razorpay/verify',       // your backend
-    themeColor: '#d4a14a'
+    themeColor: '#A2462A'
   }
 };

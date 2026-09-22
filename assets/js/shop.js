@@ -50,9 +50,9 @@ function render() {
     grid.className = '';
     grid.innerHTML = `
       <div class="empty">
-        <div class="empty__glyph">✦</div>
-        <p>Nothing matches that search.</p>
-        <button class="btn btn--ghost mt-6" id="reset">Clear filters</button>
+        <svg class="empty__mark" aria-hidden="true"><use href="#c-star"/></svg>
+        <p class="muted" style="margin-bottom:var(--sp-6)">Nothing matches that search.</p>
+        <button class="btn btn--ghost" id="reset">Clear filters</button>
       </div>`;
     if (count) count.textContent = '0 pieces';
     const r = $('#reset');
@@ -84,15 +84,16 @@ function syncChips() {
 /* ---- build category chips ---- */
 const chips = $('#chips');
 if (chips) {
+  const CAT_MARK = { all:'c-star', bracelet:'z-leo', rudraksha:'c-rudraksha', mala:'c-mala', combo:'c-star' };
   chips.innerHTML = window.CATEGORIES.map(c =>
-    `<button class="chip" data-cat="${c.key}"><span aria-hidden="true">${c.icon}\uFE0E</span>${c.label}</button>`).join('');
+    `<button class="chip" data-cat="${c.key}">${A.svg(CAT_MARK[c.key] || 'c-star')}${c.label}</button>`).join('');
 }
 
 /* ---- build zodiac chips ---- */
 const zchips = $('#zchips');
 if (zchips) {
   zchips.innerHTML = `<button class="chip" data-z="">All signs</button>` +
-    window.ZODIAC.map(z => `<button class="chip" data-z="${z.key}"><span aria-hidden="true">${z.glyph}\uFE0E</span>${z.sign}</button>`).join('');
+    window.ZODIAC.map(z => `<button class="chip" data-z="${z.key}">${A.svg('z-' + z.key)}${z.sign}</button>`).join('');
 }
 
 document.addEventListener('click', e => {

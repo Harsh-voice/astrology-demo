@@ -10,40 +10,22 @@ const $  = (s, r) => (r || document).querySelector(s);
 const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
 
 /* ---------- helpers ---------- */
-const money = n => CFG.currency + Number(n).toLocaleString('en-IN');
+const THIN = '\u2009';  /* U+2009 thin space after \u20b9 */
+const money = n => CFG.currency + THIN + Number(n).toLocaleString('en-IN');
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g,
   c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 const stars = r => '★'.repeat(Math.round(r)) + '☆'.repeat(5 - Math.round(r));
 
-/* ---------- icons ---------- */
-const I = {
-  home:'<path d="M3 10.2 12 3l9 7.2V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
-  shop:'<path d="M3 7h18l-1.5 12.2a2 2 0 0 1-2 1.8H6.5a2 2 0 0 1-2-1.8z"/><path d="M8.5 7V5.5a3.5 3.5 0 0 1 7 0V7"/>',
-  spark:'<path d="M12 2.5 14.1 9l6.4 2.1-6.4 2.1L12 19.6 9.9 13.2 3.5 11.1 9.9 9z"/>',
-  user:'<circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/>',
-  cart:'<circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.4 11.4a1.8 1.8 0 0 0 1.8 1.4h8.3a1.8 1.8 0 0 0 1.8-1.4L21 7H6"/>',
-  phone:'<path d="M21.5 16.9v2.7a1.8 1.8 0 0 1-2 1.8 17.9 17.9 0 0 1-7.8-2.8 17.6 17.6 0 0 1-5.4-5.4A17.9 17.9 0 0 1 3.5 5.3a1.8 1.8 0 0 1 1.8-2H8a1.8 1.8 0 0 1 1.8 1.6c.1 1 .3 1.9.6 2.8a1.8 1.8 0 0 1-.4 1.9L8.8 10.9a14.4 14.4 0 0 0 5.4 5.4l1.3-1.3a1.8 1.8 0 0 1 1.9-.4c.9.3 1.8.5 2.8.6a1.8 1.8 0 0 1 1.6 1.8z"/>',
-  wa:'<path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2s-1.1.3-3.6-.8-3.9-3.6-4-3.8-1-1.4-1-2.6.6-1.8.9-2.1a.9.9 0 0 1 .6-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.5-.3.3c-.1.2-.2.3 0 .6a9 9 0 0 0 1.6 2 7.5 7.5 0 0 0 2.1 1.3c.3.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.3s0 .3-.1.5z"/>',
-  insta:'<rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>',
-  close:'<path d="M18 6 6 18M6 6l12 12"/>',
-  plus:'<path d="M12 5v14M5 12h14"/>',
-  arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
-  check:'<path d="M20 6 9 17l-5-5"/>',
-  pin:'<path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/>',
-  menu:'<path d="M3 6h18M3 12h18M3 18h18"/>',
-  trash:'<path d="M4 7h16M10 11v6M14 11v6M5 7l1 13a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1l1-13M9 7V4h6v3"/>'
-};
-const svg = (k, cls) =>
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-    stroke-linecap="round" stroke-linejoin="round"${cls ? ` class="${cls}"` : ''} aria-hidden="true">${I[k] || ''}</svg>`;
+/* ---------- icons (from the sprite in icons.js) ---------- */
+const svg = (id, cls) => window.ICONS.icon(id, cls);
 
 /* ---------- navigation model ---------- */
 const NAV = [
-  { href:'index.html',    label:'Home',     icon:'home'  },
-  { href:'shop.html',     label:'Shop',     icon:'shop'  },
-  { href:'services.html', label:'Services', icon:'spark' },
-  { href:'about.html',    label:'About',    icon:'user'  },
-  { href:'contact.html',  label:'Contact',  icon:'phone' }
+  { href:'index.html',    label:'Home',     icon:'i-home'  },
+  { href:'shop.html',     label:'Shop',     icon:'i-shop'  },
+  { href:'services.html', label:'Services', icon:'i-spark' },
+  { href:'about.html',    label:'About',    icon:'i-user'  },
+  { href:'contact.html',  label:'Contact',  icon:'i-phone' }
 ];
 const here = () => {
   const f = location.pathname.split('/').pop();
@@ -103,15 +85,18 @@ window.Cart = Cart;
 /* ═══════════════════════════════════════════════════
    TOASTS
    ═══════════════════════════════════════════════════ */
-function toast(msg, icon) {
+function toast(msg) {
+  /* While the cart sheet is open the list itself is the feedback — a toast
+     would sit under the sheet, so we skip it rather than reposition it. */
+  if (document.body.classList.contains('cart-open')) return;
   let host = $('.toasts');
   if (!host) { host = document.createElement('div'); host.className = 'toasts'; document.body.appendChild(host); }
   const el = document.createElement('div');
   el.className = 'toast';
   el.setAttribute('role', 'status');
-  el.innerHTML = `<span class="toast__i">${svg(icon || 'check')}</span><span>${esc(msg)}</span>`;
+  el.textContent = msg;
   host.appendChild(el);
-  setTimeout(() => { el.classList.add('is-out'); setTimeout(() => el.remove(), 300); }, 2400);
+  setTimeout(() => { el.classList.add('is-out'); setTimeout(() => el.remove(), 260); }, 2400);
 }
 window.toast = toast;
 
@@ -128,19 +113,16 @@ function renderChrome() {
   bar.innerHTML = `
     <div class="appbar__inner">
       <a class="brand" href="index.html" aria-label="${esc(CFG.brand)} — home">
-        <img class="brand__mark" src="assets/img/logo-mark.webp" alt="" width="44" height="44" decoding="async">
-        <span class="brand__text">
-          <span class="brand__name">Astro Ashwini</span>
-          <span class="brand__sub">Vedic Astrology · Vastu</span>
-        </span>
+        <img class="brand__mark" src="assets/img/logo-mark.webp" alt="" width="36" height="36" decoding="async">
+        <span class="brand__name">Astro Ashwini</span>
       </a>
       <nav class="topnav" aria-label="Main">
         ${NAV.map(n => `<a href="${n.href}"${n.href === cur ? ' class="is-active" aria-current="page"' : ''}>${n.label}</a>`).join('')}
       </nav>
       <div class="appbar__actions">
-        <a class="icon-btn" href="tel:${esc(CFG.phone)}" aria-label="Call ${esc(CFG.phone)}">${svg('phone')}</a>
-        <button class="icon-btn" data-cart-open aria-label="Open cart">
-          ${svg('cart')}<span class="badge" data-cart-badge>0</span>
+        <a class="bar-link" href="tel:${esc(CFG.phone)}">Call</a>
+        <button class="bar-link" data-cart-open aria-label="Open cart">
+          Cart&nbsp;<span class="cart-count" data-cart-badge>(0)</span>
         </button>
       </div>
     </div>`;
@@ -154,7 +136,7 @@ function renderChrome() {
     <div class="tabbar__inner">
       ${NAV.slice(0, 2).map(n => tabHTML(n, cur)).join('')}
       <button class="tab" data-cart-open aria-label="Open cart">
-        ${svg('cart')}<span class="tab__label">Cart</span><span class="badge" data-cart-badge>0</span>
+        ${svg('i-cart')}<span class="tab__label">Cart&nbsp;<span data-cart-badge>(0)</span></span>
       </button>
       ${NAV.slice(2, 4).map(n => tabHTML(n, cur)).join('')}
     </div>`;
@@ -173,10 +155,9 @@ function renderChrome() {
   sheet.setAttribute('aria-label', 'Shopping cart');
   sheet.hidden = true;
   sheet.innerHTML = `
-    <div class="sheet__grab"></div>
     <div class="sheet__head">
-      <span class="sheet__title">Your Cart</span>
-      <button class="icon-btn" data-cart-close aria-label="Close cart">${svg('close')}</button>
+      <span class="sheet__title">Cart</span>
+      <button class="sheet__close" data-cart-close aria-label="Close cart">${svg('i-close')}</button>
     </div>
     <div class="sheet__body" data-cart-body></div>
     <div class="sheet__foot" data-cart-foot></div>`;
@@ -188,16 +169,16 @@ function renderChrome() {
   foot.innerHTML = `
     <div class="wrap">
       <div class="footer__grid">
-        <div class="footer__brand">
-          <img class="footer__logo" src="assets/img/logo-lockup.webp" alt="${esc(CFG.brand)}" width="120" height="62" loading="lazy" decoding="async">
-          <p class="muted" style="font-size:var(--fs-sm);max-width:38ch">
+        <div>
+          <img class="footer__logo" src="assets/img/logo-lockup.webp" alt="${esc(CFG.brand)}" width="104" height="54" loading="lazy" decoding="async">
+          <p style="margin-top:var(--sp-4)">
             Vedic astrology, Vastu, numerology and gemstone guidance from
-            ${esc(CFG.person)} — practising in Pune since 2015.
+            ${esc(CFG.person)} — practising in Pune.
           </p>
-          <div class="social">
-            <a href="${esc(CFG.instagram)}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">${svg('insta')}</a>
-            <a href="https://wa.me/${esc(CFG.whatsapp)}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">${svg('wa')}</a>
-            <a href="tel:${esc(CFG.phone)}" aria-label="Call">${svg('phone')}</a>
+          <div class="social" style="margin-top:var(--sp-4)">
+            <a href="${esc(CFG.instagram)}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">${svg('i-insta')}</a>
+            <a href="https://wa.me/${esc(CFG.whatsapp)}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">${svg('i-wa')}</a>
+            <a href="tel:${esc(CFG.phone)}" aria-label="Call">${svg('i-phone')}</a>
           </div>
         </div>
         <div>
@@ -215,17 +196,15 @@ function renderChrome() {
         </div>
         <div>
           <h4>Visit</h4>
-          <p class="muted" style="font-size:var(--fs-sm);line-height:1.8">
+          <p style="line-height:1.9">
             ${esc(a.line1)}<br>${esc(a.line2)}<br>${esc(a.city)} ${esc(a.pin)}<br>${esc(a.state)}
           </p>
-          <p style="margin-top:var(--sp-3)">
-            <a href="tel:${esc(CFG.phone)}" style="color:var(--gold-lt);font-weight:600">${esc(CFG.phone)}</a>
-          </p>
+          <p style="margin-top:var(--sp-3)"><a href="tel:${esc(CFG.phone)}">${esc(CFG.phone)}</a></p>
         </div>
       </div>
       <div class="footer__bottom">
         <span>© ${new Date().getFullYear()} ${esc(CFG.brand)}. All rights reserved.</span>
-        <span>${esc(CFG.rating.score)} ★ from ${esc(CFG.rating.count)} ${esc(CFG.rating.source)}</span>
+        <span>${esc(CFG.rating.score)} out of 5 — ${esc(CFG.rating.count)} ${esc(CFG.rating.source)}</span>
       </div>
     </div>`;
   const main = $('main');
@@ -254,6 +233,9 @@ function openCart() {
   $('.scrim').classList.add('is-open');
   document.body.style.overflow = 'hidden';
   document.body.classList.add('cart-open');
+  /* a toast raised just before the sheet opened would sit over the
+     checkout button — clear any that are still on screen */
+  $$('.toasts .toast').forEach(t => t.remove());
   const close = $('[data-cart-close]', sheet);
   if (close) close.focus();
 }
@@ -275,17 +257,14 @@ function renderCart() {
 
   /* badge */
   const n = Cart.count();
-  $$('[data-cart-badge]').forEach(b => {
-    b.textContent = n > 99 ? '99+' : n;
-    b.classList.toggle('is-on', n > 0);
-  });
+  $$('[data-cart-badge]').forEach(b => { b.textContent = '(' + (n > 99 ? '99+' : n) + ')'; });
 
   if (!lines.length) {
     body.innerHTML = `
       <div class="empty">
-        <div class="empty__glyph">✦</div>
-        <p style="margin-bottom:var(--sp-5)">Your cart is empty.</p>
-        <a class="btn btn--gold" href="shop.html">Browse the collection</a>
+        <svg class="empty__mark" aria-hidden="true"><use href="#c-star"/></svg>
+        <p class="muted" style="margin-bottom:var(--sp-6)">Your cart is empty.</p>
+        <a class="btn btn--ghost" href="shop.html">Browse the collection</a>
       </div>`;
     foot.innerHTML = '';
     return;
@@ -293,17 +272,21 @@ function renderCart() {
 
   body.innerHTML = lines.map(p => `
     <div class="cart-line">
-      <img class="cart-line__img" src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" decoding="async">
+      <span class="has-ghost" style="position:relative;width:64px;height:80px;flex:none">
+        ${ghostFrame(p, true)}
+        <img class="cart-line__img" src="${esc(p.img)}" alt="" loading="lazy" decoding="async"
+             style="position:absolute;inset:0;z-index:1">
+      </span>
       <div class="cart-line__info">
         <a class="cart-line__name" href="product.html?id=${encodeURIComponent(p.id)}">${esc(p.name)}</a>
         <span class="cart-line__price">${money(p.price * p.qty)}</span>
-        <div class="row gap-2" style="margin-top:4px">
-          <div class="qty">
-            <button data-qty="-1" data-id="${esc(p.id)}" aria-label="Decrease quantity of ${esc(p.name)}">−</button>
+        <div class="row gap-3" style="margin-top:6px;gap:var(--sp-4)">
+          <span class="qty">
+            <button data-qty="-1" data-id="${esc(p.id)}" aria-label="Decrease quantity of ${esc(p.name)}">${svg('i-minus')}</button>
             <span class="qty__n">${p.qty}</span>
-            <button data-qty="1" data-id="${esc(p.id)}" aria-label="Increase quantity of ${esc(p.name)}">+</button>
-          </div>
-          <button class="icon-btn" data-rm="${esc(p.id)}" aria-label="Remove ${esc(p.name)}" style="width:36px;height:36px">${svg('trash')}</button>
+            <button data-qty="1" data-id="${esc(p.id)}" aria-label="Increase quantity of ${esc(p.name)}">${svg('i-plus')}</button>
+          </span>
+          <button class="line-rm" data-rm="${esc(p.id)}" aria-label="Remove ${esc(p.name)}">Remove</button>
         </div>
       </div>
     </div>`).join('');
@@ -312,13 +295,24 @@ function renderCart() {
   const free = (CFG.shipping || {}).freeAbove || 0;
   foot.innerHTML = `
     <div class="sum-row"><span>Subtotal</span><span>${money(sub)}</span></div>
-    <div class="sum-row"><span>Delivery</span><span>${ship === 0 ? '<span style="color:var(--ok)">Free</span>' : money(ship)}</span></div>
-    ${(ship > 0 && free) ? `<div class="sum-row" style="font-size:var(--fs-xs);color:var(--gold)">
-        <span>Add ${money(free - sub)} more for free delivery</span></div>` : ''}
+    <div class="sum-row"><span>Delivery</span><span>${ship === 0 ? 'Free' : money(ship)}</span></div>
+    ${(ship > 0 && free) ? `<div class="sum-row" style="font-size:var(--fs-xs);color:var(--clay)">
+        <span>Add ${money(free - sub)} more for free delivery</span><span></span></div>` : ''}
     <div class="sum-row sum-row--total"><span>Total</span><b>${money(Cart.total())}</b></div>
-    <a class="btn btn--gold btn--block mt-4" href="checkout.html">Checkout ${svg('arrow')}</a>
-    <button class="btn btn--ghost btn--block btn--sm mt-4" data-cart-clear>Empty cart</button>`;
+    <a class="btn btn--primary btn--block" style="margin-top:var(--sp-5)" href="checkout.html">Checkout</a>
+    <button class="btn btn--ghost btn--block btn--sm" style="margin-top:var(--sp-3)" data-cart-clear>Empty cart</button>`;
 }
+
+/* Ghost frame markup — the placeholder behind every product image.
+   Shown whenever the real photograph is missing. */
+function ghostFrame(p, compact) {
+  const mark = window.ICONS.markFor(p);
+  return `<span class="ghost">
+    <svg class="ghost__mark" aria-hidden="true"><use href="#${mark}"/></svg>
+    ${compact ? '' : '<span class="ghost__cap">Photography in progress</span>'}
+  </span>`;
+}
+window.ghostFrame = ghostFrame;
 
 /* ═══════════════════════════════════════════════════
    GLOBAL EVENT DELEGATION
@@ -337,7 +331,6 @@ document.addEventListener('click', e => {
     Cart.add(id, qty);
     const p = (window.PRODUCTS || []).find(x => x.id === id);
     toast((p ? p.name : 'Item') + ' added to cart');
-    if (navigator.vibrate) { try { navigator.vibrate(12); } catch (err) {} }
     return;
   }
 
@@ -349,9 +342,9 @@ document.addEventListener('click', e => {
   }
 
   const rm = t.closest('[data-rm]');
-  if (rm) { Cart.remove(rm.dataset.rm); toast('Removed from cart', 'trash'); return; }
+  if (rm) { Cart.remove(rm.dataset.rm); toast('Removed from cart'); return; }
 
-  if (t.closest('[data-cart-clear]')) { Cart.clear(); toast('Cart emptied', 'trash'); return; }
+  if (t.closest('[data-cart-clear]')) { Cart.clear(); toast('Cart emptied'); return; }
 
   /* accordion */
   const acc = t.closest('.acc__btn');
@@ -400,8 +393,8 @@ function initReveal() {
     entries.forEach(en => {
       if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
     });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: .06 });
-  els.forEach((el, i) => { el.style.transitionDelay = Math.min(i % 8, 6) * 55 + 'ms'; io.observe(el); });
+  }, { threshold: .15 });
+  els.forEach((el, i) => { el.style.transitionDelay = Math.min(i % 6, 5) * 70 + 'ms'; io.observe(el); });
 }
 
 /* ═══════════════════════════════════════════════════
@@ -435,7 +428,25 @@ function onReady(fn) {
   readyQueue.push(fn);
 }
 
+/* Product images start hidden and are revealed only once they actually
+   load, so a missing photograph simply leaves the ghost frame showing —
+   no broken-image icon, and no dependence on when a lazy image fetches.
+   load/error do not bubble, so listen in the capture phase. */
+function initGhosts() {
+  const show = img => { if (img.naturalWidth > 0) img.classList.add('is-loaded'); };
+  document.addEventListener('load', e => {
+    const t = e.target;
+    if (t && t.tagName === 'IMG' && t.closest('.has-ghost')) show(t);
+  }, true);
+  /* catch anything already complete from cache */
+  const sweep = () => $$('.has-ghost img').forEach(show);
+  window.addEventListener('load', sweep);
+  document.addEventListener('cards:rendered', sweep);
+}
+
 function boot() {
+  window.ICONS.buildSprite();
+  initGhosts();
   renderChrome();
   Cart.load();
   renderCart();
@@ -453,5 +464,5 @@ if (document.readyState === 'loading') document.addEventListener('DOMContentLoad
 else boot();
 
 /* shared helpers for page scripts */
-window.AA = { $, $$, money, esc, stars, svg, I, toast, Cart, onReady };
+window.AA = { $, $$, money, esc, stars, svg, toast, Cart, onReady, ghostFrame };
 })();

@@ -8,7 +8,9 @@
       automatically — no code changes needed. See README.md.
    ═══════════════════════════════════════════════════════════════ */
 
-/* ---------- Zodiac reference data ---------- */
+/* ---------- Zodiac reference data ----------
+   NOTE: `glyph` is reference data only. Nothing renders it — the zodiac marks
+   on the site come from the monoline SVG sprite in assets/js/icons.js.        */
 const ZODIAC = [
   { key:'aries',      sign:'Aries',       hi:'Mesh',       glyph:'♈', dates:'Mar 21 – Apr 19', ruler:'Mars',    element:'Fire',  stone:'Red Jasper',      traits:['Bold','Driven','Pioneering'] },
   { key:'taurus',     sign:'Taurus',      hi:'Vrishabha',  glyph:'♉', dates:'Apr 20 – May 20', ruler:'Venus',   element:'Earth', stone:'Rose Quartz',     traits:['Steady','Loyal','Grounded'] },

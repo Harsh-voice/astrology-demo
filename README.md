@@ -25,24 +25,35 @@ service worker and some browser APIs do not run from `file://`.
 
 ### 2.1 Product photos
 
-Every product shows `assets/products/<id>.jpg`. Those files are currently
-**placeholder illustrations** generated for layout. To use real photos, drop a
-JPG in `assets/products/` with **exactly the same filename** — nothing else to change.
+There are **no product images in the repo**. Until a real photograph exists,
+each product shows a **ghost frame** — a neutral 4:5 panel carrying its monoline
+zodiac or rudraksha mark and the caption "Photography in progress".
+
+That is deliberate. An honest placeholder reads better than a fabricated product
+shot, and it tells a visitor exactly where things stand.
+
+**To add real photos:** drop a JPG into `assets/products/` named after the
+product id. It appears immediately — no code changes, no config.
 
 | Put your photo here | It replaces |
 |---|---|
-| `assets/products/bracelet-aries.jpg` | Aries bracelet |
-| `assets/products/bracelet-taurus.jpg` … `bracelet-pisces.jpg` | the other 11 signs |
+| `assets/products/bracelet-aries.jpg` … `bracelet-pisces.jpg` | the 12 zodiac bracelets |
 | `assets/products/rudraksha-1-mukhi.jpg` … `rudraksha-14-mukhi.jpg` | the 14 Rudraksha |
 | `assets/products/rudraksha-mala-108.jpg` | 108 bead mala |
 | `assets/products/rudraksha-siddha-mala.jpg` | Siddha mala |
 | `assets/products/combo-rudraksha-tiger-eye.jpg` | Rudraksha + Tiger Eye |
 | `assets/products/combo-seven-chakra.jpg` | Seven Chakra bracelet |
 
-Run `ls assets/products` for the full list.
+The full id list is in `assets/js/data.js`; `assets/products/README.md` repeats
+this table next to the folder itself.
 
-**Photo guidance:** square (1:1), at least 900×900, shot on a plain dark or white
-background. The card crops to a square, so keep the bracelet centred.
+**Photo guidance:** **4:5 portrait** (e.g. 1200 × 1500 — the frame crops to 4:5),
+plain undistracting background, piece centred with room around it, no baked-in
+drop shadows. Warm neutral backgrounds sit best against the site's paper tone.
+
+Mechanically: each product image starts hidden and is revealed only once it
+actually loads, so a missing file simply leaves the ghost showing. No broken-image
+icon can ever appear, and it does not matter when a lazy image fetches.
 
 ### 2.2 Prices
 
@@ -140,7 +151,7 @@ razorpay: {
   keyId: 'rzp_test_xxxxxxxxxxxx',        // Key ID only — never the secret
   createOrderUrl: '/api/razorpay/order',
   verifyUrl: '/api/razorpay/verify',
-  themeColor: '#d4a14a'
+  themeColor: '#A2462A'
 }
 ```
 
@@ -164,15 +175,16 @@ contact.html        Address, map, booking form → WhatsApp
 checkout.html       Delivery details + payment
 
 assets/css/app.css      Design system (all styling)
-assets/css/fonts.css    Self-hosted fonts — no Google Fonts request
+assets/css/fonts.css    Self-hosted fonts — no third-party requests
 assets/js/config.js     ← business details + Razorpay keys
 assets/js/data.js       ← products, prices, services, reviews
-assets/js/app.js        App shell: nav, cart, drawer, toasts, PWA
+assets/js/icons.js      Monoline SVG sprite (12 zodiac marks + UI icons)
+assets/js/app.js        App shell: nav, cart, drawer, toasts, ghost frames, PWA
 assets/js/cards.js      Product card template
 assets/js/{home,shop,product,services,about,contact,checkout}.js
 assets/img/             Brand photos and artwork (from astroashwini.com)
-assets/products/        Product photos — drop replacements here
-assets/icons/           App icons and service icons
+assets/products/        Product photos — drop them here (currently empty)
+assets/icons/           App icons
 manifest.webmanifest    PWA — installable to a phone home screen
 sw.js                   Service worker — offline support
 sitemap.xml, robots.txt SEO
@@ -180,21 +192,70 @@ sitemap.xml, robots.txt SEO
 
 ---
 
-## 6. What was built in
+## 6. Design system
 
-- **App-style shell** — fixed top bar, bottom tab bar on mobile, top nav on desktop.
-- **Cart** — persists in `localStorage`, bottom sheet on phones, side panel from 600px up.
-- **Responsive from 280px to 4K** — verified on Galaxy Fold (closed and open),
-  iPhone 15 Pro, Galaxy S24/S25 Ultra and desktop, with iOS safe-area insets
-  handled for the notch and home indicator.
+Editorial and restrained — closer to a fashion house than a template. Everything
+is driven by CSS custom properties at the top of `assets/css/app.css`.
+
+### Colour
+
+| Token | Value | Use |
+|---|---|---|
+| `--paper` | `#F7F3EC` | page base |
+| `--paper-2` | `#EDE7DC` | image wells, ghost frames |
+| `--night` | `#121010` | dark panels + footer (warm black) |
+| `--ink` | `#121010` | primary text |
+| `--ink-soft` | `#46403A` | body text |
+| `--muted` | `#6E6760` | labels, captions |
+| `--clay` | `#A2462A` | the one accent |
+| `--brass` | `#B08D57` | hairlines and rules only |
+| `--brass-ink` | `#866A3F` | section numerals |
+| `--hair` | `rgba(18,16,16,.12)` | every border |
+
+Rules the system holds to: the accent never exceeds roughly 5% of a viewport,
+there are **no gradients and no glows anywhere**, exactly **one box-shadow** in the
+whole stylesheet (a 1px hairline under the sticky buy bar), every border is a 1px
+hairline, and a dark panel appears at most twice per page (one band plus the footer).
+
+Border radius is 2px on images and inputs, 0 everywhere else.
+
+### Typography
+
+- **Fraunces** (variable — `opsz`, `wght`, `SOFT`) for display, weights **300–500 only**.
+  Optical sizing is automatic; `SOFT` is set to 20 for warmth.
+- **General Sans** (variable 200–700) for UI and body.
+- Both self-hosted as WOFF2. Three files, 268 KB. No Google Fonts request.
+- Body measure capped at 64ch. Prices use `tabular-nums` and a thin space (U+2009)
+  after the rupee sign. Form inputs stay at 16px so iOS does not zoom on focus.
+
+### Motion
+
+One easing curve (`cubic-bezier(.22,1,.36,1)`), one duration (480ms), and only two
+properties animate: opacity and a 12px translateY. No scale, bounce, spring or
+rotate. Scroll reveals stagger 70ms, fire once, trigger at 15% visibility, and are
+fully disabled under `prefers-reduced-motion`.
+
+### Iconography
+
+The 12 zodiac marks and every UI icon are a hand-drawn monoline SVG sprite
+(`assets/js/icons.js`), injected once and referenced with `<use>`. No Unicode
+zodiac characters appear anywhere, which removes the emoji-presentation problem
+at its source rather than patching it.
+
+## 6a. Also built in
+
+- **App-style shell** — fixed top bar, bottom tab bar on mobile, top nav from 900px.
+- **Cart** — persists in `localStorage`, bottom sheet on phones, side panel from 600px.
+- **Responsive 280px → 4K** — verified at 280, 360, 393, 412, 673, 900, 1440 and
+  1920 with no horizontal overflow, and iOS safe-area insets handled for the notch
+  and home indicator.
 - **PWA** — installable, works offline, opens without browser chrome.
 - **SEO** — per-page titles and descriptions, canonical URLs, Open Graph,
   `LocalBusiness` structured data with her real rating, sitemap covering all 30 products.
-- **Accessibility** — 44px+ touch targets, visible focus rings, `aria` labels on
-  icon buttons, `prefers-reduced-motion` and `prefers-contrast` respected,
-  16px form inputs so iOS doesn't zoom on focus.
-
----
+- **Accessibility** — every text colour meets WCAG AA contrast (verified by
+  calculation, not by eye), tap targets ≥40px, visible 2px focus rings in `--clay`,
+  `aria` labels on icon controls, `prefers-reduced-motion` and `prefers-contrast`
+  respected.
 
 ## 7. Content sources
 
@@ -204,3 +265,8 @@ her photographs and the service icons) were downloaded from that site and
 optimised — the 2.8 MB logo mark is now 116 KB, the 4.9 MB lion 60 KB.
 
 The 12 reviews are her real Google reviews, shown verbatim.
+
+One open art-direction question: the Leo lion artwork is her own brand asset but
+it is navy-and-gold, which is the loudest thing on an otherwise warm, light page.
+It has been kept because it is genuinely hers — but a photograph would sit better
+in this system if she has one she likes.

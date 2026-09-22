@@ -32,10 +32,10 @@ function renderSummary() {
   if (!lines.length) {
     root.innerHTML = `
       <div class="empty" style="grid-column:1/-1">
-        <div class="empty__glyph">✦</div>
+        <svg class="empty__mark" aria-hidden="true"><use href="#c-star"/></svg>
         <h2 style="margin-bottom:var(--sp-3)">Your cart is empty</h2>
-        <p style="margin-bottom:var(--sp-6)">Add a piece before checking out.</p>
-        <a class="btn btn--gold" href="shop.html">Browse the collection</a>
+        <p class="muted" style="margin-bottom:var(--sp-6)">Add a piece before checking out.</p>
+        <a class="btn btn--primary" href="shop.html">Browse the collection</a>
       </div>`;
     return false;
   }
@@ -44,7 +44,11 @@ function renderSummary() {
   box.innerHTML = `
     ${lines.map(p => `
       <div class="cart-line">
-        <img class="cart-line__img" src="${A.esc(p.img)}" alt="" loading="lazy" decoding="async">
+        <span class="has-ghost" style="position:relative;width:64px;height:80px;flex:none">
+          ${A.ghostFrame(p, true)}
+          <img class="cart-line__img" src="${A.esc(p.img)}" alt="" loading="lazy" decoding="async"
+               style="position:absolute;inset:0;z-index:1">
+        </span>
         <div class="cart-line__info">
           <span class="cart-line__name">${A.esc(p.name)}</span>
           <span class="muted" style="font-size:var(--fs-xs)">Qty ${p.qty} × ${A.money(p.price)}</span>
@@ -53,7 +57,7 @@ function renderSummary() {
       </div>`).join('')}
     <div class="mt-6">
       <div class="sum-row"><span>Subtotal</span><span>${A.money(window.Cart.subtotal())}</span></div>
-      <div class="sum-row"><span>Delivery</span><span>${ship === 0 ? '<span style="color:var(--ok)">Free</span>' : A.money(ship)}</span></div>
+      <div class="sum-row"><span>Delivery</span><span>${ship === 0 ? 'Free' : A.money(ship)}</span></div>
       <div class="sum-row sum-row--total"><span>Total</span><b>${A.money(window.Cart.total())}</b></div>
     </div>`;
   return true;
@@ -66,10 +70,9 @@ document.addEventListener('cart:change', () => { if (window.Cart.count()) render
 
 /* ---------- pay button label ---------- */
 const payBtn = $('#pay');
-payBtn.innerHTML = online()
-  ? `${A.svg('check')} Pay ${A.money(window.Cart.total())} securely`
-  : `${A.svg('wa')} Place order on WhatsApp`;
-if (!online()) payBtn.classList.replace('btn--gold', 'btn--wa');
+payBtn.textContent = online()
+  ? 'Pay ' + A.money(window.Cart.total()) + ' securely'
+  : 'Place order on WhatsApp';
 
 const note = $('#paynote');
 if (note) note.textContent = online()
@@ -188,7 +191,7 @@ async function payOnline(f) {
     image: location.origin + '/assets/icons/icon-192.png',
     prefill: { name: f.name, email: f.email, contact: f.phone },
     notes: { address: `${f.address}, ${f.city} ${f.pin}`, zodiac: f.sign || '' },
-    theme: { color: RZP.themeColor || '#d4a14a' },
+    theme: { color: RZP.themeColor || '#A2462A' },
     handler: async function (resp) {
       try {
         const v = await fetch(RZP.verifyUrl, {
@@ -223,10 +226,10 @@ async function payOnline(f) {
 function setBusy(b) {
   payBtn.disabled = b;
   payBtn.dataset.busy = b ? '1' : '';
-  if (b) payBtn.innerHTML = 'Working…';
-  else payBtn.innerHTML = online()
-    ? `${A.svg('check')} Pay ${A.money(window.Cart.total())} securely`
-    : `${A.svg('wa')} Place order on WhatsApp`;
+  if (b) payBtn.textContent = 'Working…';
+  else payBtn.textContent = online()
+    ? 'Pay ' + A.money(window.Cart.total()) + ' securely'
+    : 'Place order on WhatsApp';
 }
 
 payBtn.addEventListener('click', async e => {
@@ -254,11 +257,11 @@ function showSuccess(title, body) {
   window.Cart.clear();
   root.innerHTML = `
     <div class="empty" style="grid-column:1/-1;max-width:56ch;margin-inline:auto">
-      <div class="empty__glyph" style="color:var(--ok);opacity:1">✓</div>
+      <svg class="empty__mark" style="color:var(--ok)" aria-hidden="true"><use href="#i-check"/></svg>
       <h2 style="margin-bottom:var(--sp-3)">${A.esc(title)}</h2>
       <p style="margin-bottom:var(--sp-8)">${A.esc(body)}</p>
       <div class="row gap-3" style="justify-content:center;flex-wrap:wrap">
-        <a class="btn btn--gold" href="shop.html">Continue shopping</a>
+        <a class="btn btn--primary" href="shop.html">Continue shopping</a>
         <a class="btn btn--ghost" href="index.html">Back home</a>
       </div>
     </div>`;
@@ -268,6 +271,6 @@ function showSuccess(title, body) {
 /* prefill the zodiac dropdown */
 const sel = $('#f-sign');
 if (sel) sel.innerHTML = '<option value="">Prefer not to say</option>' +
-  window.ZODIAC.map(z => `<option value="${z.sign}">${z.glyph} ${z.sign} (${z.hi})</option>`).join('');
+  window.ZODIAC.map(z => `<option value="${z.sign}">${z.sign} (${z.hi})</option>`).join('');
 });
 })();

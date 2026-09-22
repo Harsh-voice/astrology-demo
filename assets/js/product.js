@@ -11,10 +11,10 @@ const p = (window.PRODUCTS || []).find(x => x.id === id);
 if (!p) {
   root.innerHTML = `
     <div class="empty" style="grid-column:1/-1">
-      <div class="empty__glyph">✦</div>
+      <svg class="empty__mark" aria-hidden="true"><use href="#c-star"/></svg>
       <h2 style="margin-bottom:var(--sp-3)">Piece not found</h2>
       <p style="margin-bottom:var(--sp-6)">That item is no longer listed.</p>
-      <a class="btn btn--gold" href="shop.html">Back to the shop</a>
+      <a class="btn btn--primary" href="shop.html">Back to the shop</a>
     </div>`;
   return;
 }
@@ -45,8 +45,9 @@ const specs = p.category === 'bracelet'
        ['Associated', p.ruler], ['Suits', 'All signs']];
 
 root.innerHTML = `
-  <div class="pd__media">
-    <img src="${A.esc(p.img)}" alt="${A.esc(p.name)}" width="900" height="900" fetchpriority="high" decoding="async">
+  <div class="pd__media has-ghost">
+    ${A.ghostFrame(p)}
+    <img src="${A.esc(p.img)}" alt="${A.esc(p.name)}" width="900" height="1125" fetchpriority="high" decoding="async">
   </div>
   <div>
     <span class="p-card__cat">${A.esc(p.categoryLabel)}</span>
@@ -54,10 +55,8 @@ root.innerHTML = `
     <p class="muted" style="font-size:var(--fs-sm)">${A.esc(p.tagline)}</p>
 
     <div class="row gap-3 mt-4" style="flex-wrap:wrap">
-      <span class="rating"><span class="rating__stars">${A.stars(p.rating)}</span>
-        ${p.rating.toFixed(1)} · ${p.reviews} reviews</span>
-      ${p.inStock ? '<span class="rating" style="color:var(--ok)">● In stock</span>'
-                  : '<span class="rating" style="color:var(--warn)">● Made to order</span>'}
+      <span class="rating">${p.rating.toFixed(1)} out of 5 · ${p.reviews} reviews</span>
+      <span class="rating" style="color:${p.inStock ? 'var(--ok)' : 'var(--warn)'}">${p.inStock ? 'In stock' : 'Made to order'}</span>
     </div>
 
     <div class="pd__price">
@@ -68,9 +67,9 @@ root.innerHTML = `
 
     <div class="row gap-3" style="flex-wrap:wrap">
       <div class="qty" aria-label="Quantity">
-        <button id="qm" aria-label="Decrease quantity">−</button>
+        <button id="qm" aria-label="Decrease quantity">${A.svg('i-minus')}</button>
         <span class="qty__n" id="qn">1</span>
-        <button id="qp" aria-label="Increase quantity">+</button>
+        <button id="qp" aria-label="Increase quantity">${A.svg('i-plus')}</button>
       </div>
       <span class="muted" style="font-size:var(--fs-xs)">
         Free delivery above ${A.money((window.ASTRO_CONFIG.shipping || {}).freeAbove || 0)}
@@ -78,7 +77,7 @@ root.innerHTML = `
     </div>
 
     <div class="pd__actions">
-      <button class="btn btn--gold" id="addbtn">${A.svg('cart')} Add to cart</button>
+      <button class="btn btn--primary" id="addbtn">Add to cart</button>
       <a class="btn btn--ghost" id="buynow" href="checkout.html">Buy now</a>
     </div>
 
@@ -89,29 +88,29 @@ root.innerHTML = `
         <div class="spec__k">${A.esc(k)}</div><div class="spec__v">${A.esc(v)}</div></div>`).join('')}
     </div>
 
-    <h3 style="font-size:var(--fs-lg);margin-bottom:var(--sp-4)">Why this piece</h3>
+    <h3 style="font-size:var(--fs-lg);margin-bottom:var(--sp-5)">Why this piece</h3>
     <ul class="bullets">${p.benefits.map(b => `<li>${A.esc(b)}</li>`).join('')}</ul>
 
     <div class="acc mt-6">
       <div class="acc__item">
-        <button class="acc__btn" aria-expanded="false">How to wear it ${A.svg('plus')}</button>
+        <button class="acc__btn" aria-expanded="false">How to wear it ${A.svg('i-plus')}</button>
         <div class="acc__panel"><p>${A.esc(p.wearing)}</p></div>
       </div>
       <div class="acc__item">
-        <button class="acc__btn" aria-expanded="false">Care ${A.svg('plus')}</button>
+        <button class="acc__btn" aria-expanded="false">Care ${A.svg('i-plus')}</button>
         <div class="acc__panel"><p>${A.esc(p.care)}</p></div>
       </div>
       <div class="acc__item">
-        <button class="acc__btn" aria-expanded="false">Delivery &amp; returns ${A.svg('plus')}</button>
+        <button class="acc__btn" aria-expanded="false">Delivery &amp; returns ${A.svg('i-plus')}</button>
         <div class="acc__panel"><p>Dispatched from Pune within 2 working days; 4–7 days across India.
           Free delivery above ${A.money((window.ASTRO_CONFIG.shipping || {}).freeAbove || 0)}.
           Unworn pieces can be returned within 7 days of delivery — energised items are checked on return.</p></div>
       </div>
       <div class="acc__item">
-        <button class="acc__btn" aria-expanded="false">Not sure which to choose? ${A.svg('plus')}</button>
+        <button class="acc__btn" aria-expanded="false">Not sure which to choose? ${A.svg('i-plus')}</button>
         <div class="acc__panel"><p>Ashwini reads your chart before recommending a stone or bead —
           the wrong one simply does nothing. Book a consultation and she will tell you what your chart asks for.
-          <a href="contact.html" style="color:var(--gold-lt);font-weight:600">Book a consultation →</a></p></div>
+          <a href="contact.html" class="clay">Book a consultation →</a></p></div>
       </div>
     </div>
   </div>`;
@@ -141,7 +140,7 @@ const bar = document.createElement('div');
 bar.className = 'buybar';
 bar.innerHTML = `
   <span class="buybar__p"><small>Total</small><b id="bb-price">${A.money(p.price)}</b></span>
-  <button class="btn btn--gold" id="bb-add" data-add="${A.esc(p.id)}" data-qty="1">Add to cart</button>`;
+  <button class="btn btn--primary" id="bb-add" data-add="${A.esc(p.id)}" data-qty="1">Add to cart</button>`;
 document.body.appendChild(bar);
 
 const addBtn = $('#addbtn');
