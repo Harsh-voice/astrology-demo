@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a1424">
+<title>Checkout | Astro Ashwini</title>
+<meta name="description" content="Secure checkout for zodiac bracelets and certified Rudraksha from Astro Ashwini, Pune.">
+<link rel="canonical" href="https://astroashwini.com/checkout.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Checkout | Astro Ashwini">
+<meta property="og:description" content="Secure checkout for zodiac bracelets and certified Rudraksha from Astro Ashwini, Pune.">
+<meta property="og:image" content="assets/img/leo-lion.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/Inter-latin-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/CormorantGaramond-latin-400.woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+
+<main class="page">
+  <section class="phead">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>›</span><a href="shop.html">Shop</a><span>›</span><span>Checkout</span></nav>
+      <p class="eyebrow is-center">Almost there</p>
+      <h1>Checkout</h1>
+      
+    </div>
+  </section>
+
+  <section class="section--tight section">
+    <div class="wrap">
+      <div class="grid grid-2" id="checkout" style="align-items:start">
+
+        <div class="card" style="padding:var(--sp-5)">
+          <h2 style="font-size:var(--fs-lg);margin-bottom:var(--sp-5)">Delivery details</h2>
+          <div class="field">
+            <label for="f-name">Full name *</label>
+            <input class="input" id="f-name" autocomplete="name"><span class="field__err"></span>
+          </div>
+          <div class="field">
+            <label for="f-phone">Mobile number *</label>
+            <input class="input" id="f-phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit mobile"><span class="field__err"></span>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input class="input" id="f-email" type="email" autocomplete="email"><span class="field__err"></span>
+          </div>
+          <div class="field">
+            <label for="f-address">Delivery address *</label>
+            <textarea class="textarea" id="f-address" autocomplete="street-address"></textarea><span class="field__err"></span>
+          </div>
+          <div class="grid grid-2" style="gap:var(--sp-3)">
+            <div class="field">
+              <label for="f-city">City *</label>
+              <input class="input" id="f-city" autocomplete="address-level2"><span class="field__err"></span>
+            </div>
+            <div class="field">
+              <label for="f-pin">PIN code *</label>
+              <input class="input" id="f-pin" inputmode="numeric" autocomplete="postal-code"><span class="field__err"></span>
+            </div>
+          </div>
+
+          <hr class="hr-gold" style="margin-block:var(--sp-5)">
+          <p class="muted" style="font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;margin-bottom:var(--sp-4)">
+            So Ashwini can check the piece suits your chart
+          </p>
+          <div class="grid grid-2" style="gap:var(--sp-3)">
+            <div class="field">
+              <label for="f-dob">Date of birth</label>
+              <input class="input" id="f-dob" type="date">
+            </div>
+            <div class="field">
+              <label for="f-sign">Zodiac sign</label>
+              <select class="select" id="f-sign"></select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-notes">Notes</label>
+            <textarea class="textarea" id="f-notes" placeholder="Wrist size, gift wrapping, anything else"></textarea>
+          </div>
+        </div>
+
+        <div class="card" style="padding:var(--sp-5)">
+          <h2 style="font-size:var(--fs-lg);margin-bottom:var(--sp-5)">Your order</h2>
+          <div id="summary"></div>
+          <button class="btn btn--gold btn--block mt-8" id="pay">Continue</button>
+          <p class="muted center mt-4" style="font-size:var(--fs-xs)" id="paynote"></p>
+          <p class="center mt-4"><a href="shop.html" style="font-size:var(--fs-xs);color:var(--gold-lt)">← Keep shopping</a></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<noscript>
+  <nav style="padding:1rem;text-align:center;background:#0e1c31">
+    <a href="index.html" style="color:#f0c97a;margin:0 .5rem">Home</a>
+    <a href="shop.html" style="color:#f0c97a;margin:0 .5rem">Shop</a>
+    <a href="services.html" style="color:#f0c97a;margin:0 .5rem">Services</a>
+    <a href="about.html" style="color:#f0c97a;margin:0 .5rem">About</a>
+    <a href="contact.html" style="color:#f0c97a;margin:0 .5rem">Contact</a>
+  </nav>
+</noscript>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/checkout.js"></script>
+</body>
+</html>
