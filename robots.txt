@@ -1,5 +1,5 @@
+# Private demo — deliberately kept out of search.
+# The live site is astroashwini.com; this build must not compete with it.
+# Run `node tools/site-mode.mjs live https://yourdomain` to reverse.
 User-agent: *
-Allow: /
-Disallow: /checkout.html
-
-Sitemap: https://astroashwini.com/sitemap.xml
+Disallow: /

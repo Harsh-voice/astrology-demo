@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://astroashwini.com/index.html</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://astroashwini.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://astroashwini.com/shop.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://astroashwini.com/services.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://astroashwini.com/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -17,16 +17,6 @@
   <url><loc>https://astroashwini.com/product.html?id=bracelet-capricorn</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://astroashwini.com/product.html?id=bracelet-aquarius</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://astroashwini.com/product.html?id=bracelet-pisces</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://astroashwini.com/product.html?id=bracelet-all</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://astroashwini.com/product.html?id=bracelet-bracelet</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://astroashwini.com/product.html?id=bracelet-rudraksha</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://astroashwini.com/product.html?id=bracelet-mala</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://astroashwini.com/product.html?id=bracelet-combo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://astroashwini.com/product.html?id=bracelet-vaastu</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://astroashwini.com/product.html?id=bracelet-astrology</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://astroashwini.com/product.html?id=bracelet-numerology</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://astroashwini.com/product.html?id=bracelet-horoscope</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://astroashwini.com/product.html?id=bracelet-gemstone</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://astroashwini.com/product.html?id=rudraksha-1-mukhi</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://astroashwini.com/product.html?id=rudraksha-2-mukhi</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://astroashwini.com/product.html?id=rudraksha-3-mukhi</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
