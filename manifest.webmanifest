@@ -6,8 +6,8 @@
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#F7F3EC",
-  "theme_color": "#F7F3EC",
+  "background_color": "#0F0D0C",
+  "theme_color": "#0F0D0C",
   "lang": "en-IN",
   "dir": "ltr",
   "categories": [
