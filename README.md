@@ -167,7 +167,7 @@ misconfigured key never costs a sale.
 
 The site is static with no build step, so any host works. It is set up for Vercel.
 
-### Import it (one time, ~2 minutes)
+### Option A — Vercel (one time, ~2 minutes)
 
 1. <https://vercel.com/new> → **Import Git Repository** → `Harsh-voice/astrology-demo`.
    If it is not listed, use **Adjust GitHub App Permissions** and grant access.
@@ -181,6 +181,31 @@ Every push to the production branch redeploys automatically after that.
 > Make sure the repository's default branch is **`main`** (GitHub → Settings →
 > Branches). The old default, `claude/zealous-rubin-0bhz4z`, holds an unrelated
 > early prototype — Vercel would deploy that instead.
+
+### Option B — GitHub Pages (free, no extra account)
+
+The repo is public, so Pages is free, and the site is subpath-safe (no
+root-absolute paths, manifest `scope: "./"`, relative service worker), so it runs
+unmodified at `https://harsh-voice.github.io/astrology-demo/`.
+
+`.github/workflows/pages.yml` is already committed and waiting. **One setting
+turns it on:**
+
+> Repo → **Settings** → **Pages** → **Source** → **GitHub Actions** → Save.
+
+The workflow then deploys on every push to `main`. (It cannot switch Pages on by
+itself — the Actions token is refused with *"Resource not accessible by
+integration"* on create-a-Pages-site.)
+
+Alternatively **Source → Deploy from a branch → `main` / `/ (root)`** works too
+and skips Actions entirely; `.nojekyll` is committed so Pages serves the files
+verbatim.
+
+**Note:** on any purely static host, checkout always takes the WhatsApp path.
+`config.js` points `createOrderUrl` at `/api/razorpay/order`, and neither Pages
+nor a plain static host can serve that endpoint. That is already the shipped
+behaviour (Razorpay is disabled) — it is not a bug, and §4 covers going live
+with real payments.
 
 ### Demo mode vs live mode
 
